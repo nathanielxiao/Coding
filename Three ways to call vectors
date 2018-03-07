@@ -1,0 +1,13 @@
+	for (auto item : vi) //for every elements in the vector do below
+	{
+		cout << item << " ";
+	}
+	cout << endl;
+	for (unsigned int i = 0; i < vi.size(); i++)
+	{
+		cout << vi[i] << " ";
+	}
+	for (auto i = begin(vi; i != end(vi); i++)
+	{
+		cout << *i << " ";
+	}
