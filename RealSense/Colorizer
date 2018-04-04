@@ -1,0 +1,19 @@
+Hi @zenving
+
+First, regarding the functionality of the colorizer:
+
+1. By default, it will convert any 16-bit depth image to an RGB image using the JET color scheme.
+2. You can enable / disable histogram equalization using RS2_OPTION_HISTOGRAM_EQUALIZATION_ENABLED option. Generally speaking, histogram 
+   equalization produces images with more details, but it can also exaggerate the noise when the dynamic range is low.
+3. When histogram equalization is disabled, the color map will be scaled from RS2_OPTION_MIN_DISTANCE to RS2_OPTION_MAX_DISTANCE in meters.
+4. We implemented several color maps you can use out of the box by settings the RS2_OPTION_COLOR_SCHEME option. You can get the total 
+   number of color maps using get_option_range method.
+
+
+
+Now regarding the use of the colorizer in code: We often use colorizer to shape depth data into something the user can more easily process.
+For consistency and clarity we use the colorizer even when better methods exist (like with the Unity wrapper, where it makes much more 
+sense to implement this conversion in a shader, or in OpenCV examples, where you can achieve a similar effect with couple of OpenCV calls).
+
+
+I somewhat regret using the colorizer in the Grab-Cut example. Sure, it works, and we saw an opportunity to showcase RealSense API, but in context of OpenCV example it would make more sense to use standard OpenCV tools.
